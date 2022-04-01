@@ -1,0 +1,64 @@
+/*
+	1. Récupérer les dates de débuts des réservations de David Farrell
+	(1 colonne: Dates de début)
+	(34 lignes)
+*/
+SELECT starttime  AS "Dates de début"
+FROM members
+INNER JOIN bookings on members.memid = bookings.memid
+WHERE members.firstname = 'David' AND members.surname = 'Farrell';
+
+/*
+	2. Déterminer les heures de début des réservations pour des courts
+	de tennis 1 et 2, le 21/09/2012.
+	(2 colonnes: Heures de début, nom du court)
+	(12 lignes)
+*/
+SELECT bookings.starttime  AS "Heures de début", facilities.name AS "Nom du court"
+FROM facilities
+INNER JOIN bookings on facilities.facid = bookings.facid
+WHERE (bookings.starttime >= '2012-09-21' AND bookings.starttime < '2012-09-22' )
+AND (facilities.name = 'Tennis Court 1' OR facilities.name = 'Tennis Court 2');
+
+/*
+	3. Produire une liste de tous les membres qui ont recommandé un autre
+	membre.
+	(2 colonnes: Prénom, Nom)
+	(13 lignes)
+*/
+SELECT distinct m.firstname AS Prénom, m.surname AS Nom
+FROM members m2
+INNER JOIN members m ON m.memid = m2.recommendedby;
+
+/*
+	4. Produire une lis te de tous les membres et de leurs parrains
+	(4 colonnes: prénom membre, nom membre, prénom parrain, nom parrain)
+	(31 lignes)
+*/
+
+/*
+	5. Dresser une liste de tous les membres qui ont utilisé le court
+	de tennis 1 ou 2
+	(2 colonnes: "Nom et Prénom du membre", Nom du court)
+	(46 lignes)
+*/
+
+/*
+	6. Produire une liste des réservations qui ont couté plus de 30$
+	le 14/09/2012
+	(3 colonnes: "Prénom et Nom du membre", Nom du court, coût de la réservation)
+	(18 lignes)
+*/
+
+/*
+	7. Produire une liste de tous les membres, avec leurs parrains,
+	sans utiliser de jointure.
+	(2 colonnes: "Prenom et Nom des membres", "Prénom et Nom des parrains")
+	(30 lignes)
+*/
+
+/*
+	8. Idem que 6.,	en utilisant une sous-requête.
+	(3 colonnes: "Prénom et Nom du membre", Nom du court, coût)
+	(18 lignes)
+*/
